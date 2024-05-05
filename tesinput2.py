@@ -3,7 +3,8 @@ import netifaces as ni
 from webserver import app
 
 # Token bot Telegram
-TOKEN = "6943286641:AAGk9SKix3nTPLphMD2Bj_8Y6SGAdIgPdBk"
+
+TOKEN = ""
 
 ip = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
 ipaddr = ip
