@@ -1,30 +1,24 @@
-# Importing flask module in the project is mandatory
-# An object of Flask class is our WSGI application.
-from flask import Flask
-# from tesinput2 import start
-# import netifaces as ni
+from flask import Flask, request, jsonify
+import netifaces as ni
 
-# ip = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
-# ipaddr = ip
-
-# Flask constructor takes the name of 
-# current module (__name__) as argument.
 app = Flask(__name__)
 
-# The route() function of the Flask class is a decorator, 
-# which tells the application which URL should call 
-# the associated function.
+ipaddr = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
+
 @app.route('/')
-# ‘/’ URL is bound with hello_world() function.
-def hello_world():
-	# return start()
-	return 'Hello World'
+def home():
+    return "Flask app is running!"
 
-# main driver function
+# ... other Flask routes and logic
+
 if __name__ == '__main__':
+    from threading import Thread
 
-	# run() method of Flask class runs the application 
-	# on the local development server.
+    # Import Telebot functionality from telebot_script.py
+    from tesinput2 import run_telebot
 
-    
-	app.run()
+    # Start Telebot in a separate thread
+    telebot_thread = Thread(target=run_telebot)
+    telebot_thread.start()
+
+    app.run(host=ipaddr, port=5000)  # Run Flask app
