@@ -1,15 +1,26 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template
+from flask.cli import F
 import netifaces as ni
+import datetime
 
 app = Flask(__name__)
 
-ipaddr = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
+# ipaddr = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
+global ipaddr
+ipaddr = ni.ifaddresses('wlp3s0')[ni.AF_INET][0]['addr']
+
+# Dummy temperature value
+dummy_temperature = 25
+
+# Function to get current time
+def get_current_time():
+    return datetime.datetime.now().strftime("%H:%M")
 
 @app.route('/')
-def home():
-    return "Flask app is running!"
-
-# ... other Flask routes and logic
+def index():
+    # Get current time
+    current_time = get_current_time()
+    return render_template('index.html', time=current_time, temperature=dummy_temperature)
 
 if __name__ == '__main__':
     from threading import Thread
