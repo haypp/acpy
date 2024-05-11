@@ -1,4 +1,5 @@
 from operator import call
+from turtle import done
 import telebot
 from telebot import types
 import netifaces as ni
@@ -14,6 +15,7 @@ bot = telebot.TeleBot(TOKEN)
 # Inisialisasi dictionary untuk menyimpan suara pengguna
 user_votes = {}
 voting_started = False
+# done_setting = False
 
 ipaddr = ni.ifaddresses('wlp3s0')[ni.AF_INET][0]['addr']
 
@@ -23,6 +25,8 @@ def botrun(time_end,jUser):
 # Menangani perintah /start
 @bot.message_handler(commands=['startnew'])
 def start(message):
+    # global done_setting
+    # done_setting = True
     bot.reply_to(message, 'Halo! Silakan berikan informasi tentang acara kamu.')
 
 @bot.message_handler(commands=['start'])
@@ -60,12 +64,15 @@ def send_ir():
 
 @bot.message_handler(commands=['vote'])
 def vote_temperature(message):
-    global voting_started
-    markup = types.InlineKeyboardMarkup()
-    itembtn1 = types.InlineKeyboardButton('naik', callback_data='naik')
-    itembtn2 = types.InlineKeyboardButton('turun', callback_data='turun')
-    markup.add(itembtn1, itembtn2)
-    bot.send_message(message.chat.id, "Apakah suhu akan naik atau turun?", reply_markup=markup)
+        # if done_setting == True :
+            global voting_started
+            markup = types.InlineKeyboardMarkup()
+            itembtn1 = types.InlineKeyboardButton('naik', callback_data='naik')
+            itembtn2 = types.InlineKeyboardButton('turun', callback_data='turun')
+            markup.add(itembtn1, itembtn2)
+            bot.send_message(message.chat.id, "Apakah suhu akan naik atau turun?", reply_markup=markup)
+        # else :
+        #     bot.send_message(message.chat.id, "Bilang Admin Untuk Menyelsaikan Setting")
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
