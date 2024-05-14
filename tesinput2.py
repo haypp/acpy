@@ -1,4 +1,4 @@
-from operator import call
+#from operator import call
 from turtle import done
 import telebot
 from telebot import types
