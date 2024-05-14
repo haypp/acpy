@@ -15,7 +15,7 @@ bot = telebot.TeleBot(TOKEN)
 user_votes = {}
 voting_started = False
 
-ipaddr = ni.ifaddresses('wlp3s0')[ni.AF_INET][0]['addr']
+ipaddr = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
 
 def botrun(time_end,jUser):
     print(time_end,jUser)
