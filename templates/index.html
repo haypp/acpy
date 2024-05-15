@@ -4,70 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jam dan Temperatur Elegan</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <style>
-      /* Gaya untuk container */
-      .container {
-        max-width: 100%;
-        height: 100vh;
-        display: flex;
-        flex-direction: column-reverse; /* Ubah arah flexbox menjadi kebalikan */
-        align-items: center;
-        justify-content: center;
-        background-color: #222; /* Mengubah warna background menjadi gelap */
-        color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      /* Gaya untuk jam */
-      .jam {
-        font-size: 5vw; /* Ukuran font relatif terhadap viewport */
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 20px;
-      }
-
-      /* Gaya untuk temperatur */
-      .temperatur {
-        font-size: 8vw;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 10px;
-        padding: 10px 20px;
-        border: 2px solid #16ca10; /* Mengubah warna border menjadi hitam */
-        border-radius: 5px;
-      }
-
-      /* Gaya untuk ikon temperatur */
-      .temperatur i {
-        margin-right: 5px;
-      }
-      .controlled-by-me {
-        font-size: 5.5vw; /* Ukuran font relatif terhadap viewport */
-        font-style: italic; /* Gaya miring */
-        color: #1a1010; /* Warna abu-abu terang */
-      }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <div class="container">
-      <div class="jam" id="jam"></div>
+  <body class="bg-gradient-to-t from-indigo-500">
+    <div class="h-screen w-screen relative">
+      <div class="right-3 top-3 absolute" id="jam"></div>
 
-      <div class="temperatur" id="temperatur">
-        <i class="fas fa-thermometer-half"></i> {{ temperature }}
+      <div
+        class="absolute inset-0 flex flex-col justify-center items-center space-y-5"
+      >
+        <div class="flex flex-row">
+          <div class="text-9xl text-white" id="temperatur">
+            {{ temperature }}
+          </div>
+          <div class="text-4xl text-white">°C</div>
+        </div>
+
+        <p class="text-5xl text-white font-style">STIKI MALANG</p>
       </div>
-      <p class="controlled-by-me">UwU</p>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <script>
       // Fungsi untuk mendapatkan waktu saat ini
       function getWaktuSekarang() {
@@ -82,7 +38,9 @@
       // Fungsi untuk memperbarui waktu setiap detik
       setInterval(() => {
         const waktuSekarang = getWaktuSekarang();
-        $("#jam").text(waktuSekarang);
+        const jam = document.getElementById("jam");
+        jam.innerText = waktuSekarang;
+        // $("#jam").text(waktuSekarang);
       }, 1000);
     </script>
   </body>

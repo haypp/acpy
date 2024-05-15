@@ -15,8 +15,6 @@ def get_current_time():
 
 @app.route('/')
 def index():
-    # Get current time
-    # current_time = get_current_time()
     # return render_template('index.html', temperature=get_suhu(4))
     return render_template('index.html', temperature=5)
 
