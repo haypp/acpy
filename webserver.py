@@ -23,7 +23,7 @@ if __name__ == '__main__':
     from threading import Thread
 
     # Import Telebot functionality from telebot_script.py
-    from tesinput2 import run_telebot
+    from main import run_telebot
 
     # Start Telebot in a separate thread
     telebot_thread = Thread(target=run_telebot)
