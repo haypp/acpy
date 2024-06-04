@@ -6,22 +6,22 @@
     <title>Jam dan Temperatur Elegan</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gradient-to-t from-indigo-500">
-    <div class="h-screen w-screen relative">
-      <div class="right-3 top-3 absolute" id="jam"></div>
+  <body>
+    <div class="bg-gray-700 h-screen w-screen relative text-white">
+      <div class="left-7 top-5 absolute">DevelopByMe</div>
+      <div class="right-7 top-5 absolute" id="jam"></div>
 
       <div
         class="absolute inset-0 flex flex-col justify-center items-center space-y-5"
       >
         <div class="flex flex-row">
-          <div class="text-9xl text-white" id="temperatur">
-            {{ temperature }}
-          </div>
-          <div class="text-4xl text-white">°C</div>
+          <div class="text-9xl" id="temperatur">{{ temperature }}</div>
+          <div class="text-4xl">°C</div>
         </div>
 
-        <p class="text-5xl text-white font-style">STIKI MALANG</p>
+        <p class="underline decoration-double text-5xl">STIKI MALANG</p>
       </div>
+      <!-- <footer class="place-content-center bottom-5 absolute">UwU</footer> -->
     </div>
 
     <script>
