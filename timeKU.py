@@ -11,7 +11,10 @@ def adjust_temp(_up_votes,_down_votes):
         print('send down')
 
 def set_off(_time_end):
-    target_time = time(*map(int, _time_end.split(':')))
+    # Split the input string and convert to integers
+    hours, minutes = map(int, _time_end.split(':'))
+    # Create a time object with the given hours and minutes
+    target_time = time(hours, minutes)
     current_time = datetime.now().time()
     
     while current_time < target_time:
