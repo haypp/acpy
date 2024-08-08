@@ -1,7 +1,7 @@
-def control_mosfet(gpio_pin, duration=1):
-    import RPi.GPIO as GPIO
-    import time
+import RPi.GPIO as GPIO
+import time
 
+def control_mosfet(gpio_pin, duration=1):
     # Setup
     GPIO.setmode(GPIO.BCM)  # Use Broadcom pin numbering
     GPIO.setup(gpio_pin, GPIO.OUT)
@@ -16,3 +16,11 @@ def control_mosfet(gpio_pin, duration=1):
 
     finally:
         GPIO.cleanup()  # Reset the GPIO pins to a safe state
+        setgnd(1)
+
+def setgnd(isian):    
+    if isian == 1 :
+        GPIO.output(27, GPIO.HIGH)
+    else :
+        GPIO.output(27, GPIO.LOW)
+    

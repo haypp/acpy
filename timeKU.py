@@ -1,5 +1,6 @@
 from datetime import datetime, time
 from sendir import control_mosfet as sendir
+from sendir import setgnd
 
 # from time import sleep
 
@@ -8,9 +9,11 @@ def adjust_temp(_up_votes,_down_votes):
     _down_votes = int(_down_votes)
     if _up_votes > _down_votes:
         print('send up')
+        setgnd(2)
         sendir(23,1)
     else:
         print('send down')
+        setgnd(2)
         sendir(24,1)
 
 def set_off(_time_end):
